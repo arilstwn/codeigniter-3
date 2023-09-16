@@ -18,5 +18,18 @@ class M_model extends CI_Model{
     // {
     //     $this->db->insert->($table, $data);
     //     return $this->db->insert_id();
+
+
     // }
+    //ubah 
+    public function get_by_id($tabel, $id_column)
+    {
+        $data=$this->db->where($id_column)->get($tabel);
+        return $data;
+    }
+    public function ubah_data($tabel, $data, $where)
+    {
+        $data=$this->db->update($tabel, $data, $where);
+        return $this->db->affected_rows();
+    }
 }

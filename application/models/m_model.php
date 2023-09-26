@@ -32,4 +32,14 @@ class M_model extends CI_Model{
         $data=$this->db->update($tabel, $data, $where);
         return $this->db->affected_rows();
     }
+
+
+  
+    public function get_by_akun($tabel, $id_column)
+    {
+        $data=$this->db->where($id_column)->get($tabel);
+        return $data;
+    }
+  
+
 }

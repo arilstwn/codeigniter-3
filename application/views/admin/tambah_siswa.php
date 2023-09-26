@@ -19,8 +19,8 @@
 
 <body class="min-vh-100 d-flex align-items-center">
     <div class="card w-50 m-auto p-3">
-        <h3 class="text-center">Create</h3>
-        <form method="post" class="row">
+        <h3 class="text-center">Tambah Siswa</h3>
+        <form action="<?php echo base_url('admin/aksi_tambah_siswa') ?>" method="post" class="row">
             <div class="mb-3 col-6">
                 <label for="nama" class="form-label">Nama Siswa</label>
                 <input type="text" class="form-control" id="nama" name="nama">
@@ -39,22 +39,18 @@
                     <option value="Perempuan">Perempuan</option>
                 </select>
             </div>
-            <div class="mb-3 col-6">
+              <div class="mb-3 col-6">
                 <label for="kelas" class="form-label">Kelas</label>
-                <select name="id_kelas" class="form-select">
-                    <option selected>Pilih Kelas</option>
-                    
-                    <?php 
-                    
-                    foreach ($kelas as $row) :
-                        ?>
-                    <option value="<?php echo $row->id ?>">
-                    <?php echo tampil_full_kelas_byid($row->tingkat_kelas . '' .$row->juruan_kelas) ?>
-                </option>
-                <?php endforeach ?>
-            </select>
+                <input type="text" class="form-control" id="kelas" name="kelas">
+            </div>
+            
+            <div class="mb-3 col-6">
+                <label for="foto" class="form-label">Foto</label>
+                <input type="filr" class="form-control" id="foto" name="foto">
+            </div>
+            
+            <a href="<?php echo base_url('admin/siswa') ?>" class="btn btn-primary">Tambah</a>
         </div>
-        <a href="<?php echo base_url('admin/tambah_siswa') ?>" class="btn btn-primary">Tambah</a>
              
         </form>
     </div>

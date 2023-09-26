@@ -82,6 +82,7 @@ body {
                                 <tr>
                                     <th scope="col">No </th>
                                     <th scope="col">Nama </th>
+                                    <th scope="col">Foto Siswa</th>
                                     <th scope="col">NISN </th>
                                     <th scope="col"> Gender </th>
                                     <th scope="col"> Kelas </th>
@@ -97,6 +98,7 @@ body {
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo$no ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         <?php echo $row->nama_siswa ?></td>
+                                        <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo$foto_siswa ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->nisn ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->gender ?>
                                  </td>

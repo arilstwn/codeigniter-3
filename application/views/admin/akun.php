@@ -10,19 +10,19 @@
  
 </head>
 <body class="min-vh-100 d-flex align-items-center">
-    <?php foreach($user as $user) : ?>
+
     <div class="card w-50 m-auto p-3">
         <h3 class="text-center"><b>Akun</b></h3>
         <hr>
-        <form method="post" class="row">
+        <form action= "<?php echo base_url('admin/aksi_ubah_akun') ?>" enctype="multipart/form-data" method="post" class="row">
             <div class="mb-3 col-6">
                 <label for="email" class="form-label"><b>Email</b></label>
-                <input type="text" class="form-control" id="email"  placeholder="Wahyu.@gamil" name="email" value="<?php echo $users->email ?>">
+                <input type="text" class="form-control" id="email" name="email">
                 <hr>
             </div>
             <div class="mb-3 col-6">
                 <label for="username" class="form-label"><b>Username</b></label>
-                <input type="text" class="form-control" id="username"  placeholder="Wahyu" name="username" <?php echo $users->username ?>>
+                <input type="text" class="form-control" id="username" name="username">
                 <hr>
             </div>
             <div class="mb-3 col-6">
@@ -37,8 +37,9 @@
                <button type="submit" class="btn btn-sm btn-primary">Ubah</button>        
             </div>
             
+           
         </form>
     </div>
-    <?php endforeach ?>
+
 </body>
 </html>

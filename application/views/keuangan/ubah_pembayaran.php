@@ -34,10 +34,17 @@
         enctype="multipart/form-data"
         method="post" class="row">
         <input name="id" type="hidden" value="<?php echo $row->id ?>">
-            <div class="mb-3 col-6">
-                <label for="id_siswa" class="form-label"><b>ID Siswa</b></label>
-                <input type="text" class="form-control" id="id_siswa" name="id_siswa" value="<?php echo$row->id_siswa ?>">
-                <hr>
+        <div class="mb-3 col-6">
+                <label for="siswa" class="form-label"><b>Siswa</b></label>
+                <select name="id_siswa" class="form-select">
+                    <option selected>Pilih Siswa</option>
+                    <?php foreach ($siswa as $row) : ?>
+                    <option value="<?php echo $row->id_siswa ?>">
+                        <?php echo $row->nama_siswa ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
+               <hr>
             </div>
             <div class="mb-3 col-6">
                 <label for="jenis_pembayaran" class="form-label"><b>Jenis Pembayaran</b></label>
@@ -51,8 +58,25 @@
                 </select>
                 <hr>
             </div>
-            
-                <button class="btn btn-lg btn-primary" type="submit">Ubah</button>           
+            <center>
+            <div class="mb-3 col-6">
+            <label for="total_pembayaran" class="form-label"><b>Total Pembayaran</b></label>
+            <input type="text" class="form-control" id="total_pembayaran" placeholder="O shiharai sōgaku o nyūryoku shite kudasai" name="total_pembayaran">
+             <hr>
+          </div></center>
+          <div class="flex justify-content-between">
+                    <div>
+                        <a href="<?php echo base_url('keuangan/pembayaran'); ?>"
+                            class=" flex items-center p-2 m-10 w-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2  rounded w-7/6">
+                            <span>Kembali</span>
+                        </a>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="flex items-center p-2 m-10 w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded w-7/6"
+                            name=" submit">Confirm</button>
+                    </div>
+                </div>        
                         </form>
                         <?php endforeach; ?>
 </body>

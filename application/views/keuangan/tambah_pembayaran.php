@@ -50,15 +50,15 @@
             
       
                     <option value="pembayaran_SPP">Pembayaran SPP</option>
-                    <option value="Pembayaran_Uang_Gedung">Pembayaran Uang Gedung</option>
-                    <option value="Pembayaran_Seragam">Pembayaran Seragam</option>
+                    <option value="Pembayaran_uang_gedung">Pembayaran Uang Gedung</option>
+                    <option value="Pembayaran_seragam">Pembayaran Seragam</option>
                 </select>
                 <hr>
             </div>
             <center>
             <div class="mb-3 col-6">
             <label for="total_pembayaran" class="form-label"><b>Total Pembayaran</b></label>
-            <input type="text" class="form-control" id="total_pembayaran" placeholder="O shiharai sōgaku o nyūryoku shite kudasai" name="total_pembayran">
+            <input type="text" class="form-control" id="total_pembayaran" placeholder="O shiharai sōgaku o nyūryoku shite kudasai" name="total_pembayaran">
              <hr>
           </div></center>
 <button type="submit" class="btn btn-sm btn-primary">Tambah</button>             

@@ -39,7 +39,19 @@ class M_model extends CI_Model{
         $this->db->insert($table, $data);
         return $this->db->insert_id();
     }
-
+     
+    public function delete_pembayaran($table, $field, $id)
+    {
+        $data=$this->db->delete($table, array($field => $id));
+        return $data;
+    }
+    
+    
+    // public function ubah_data($tabel, $data, $where)
+    // {
+    //     $data=$this->db->update($tabel, $data, $where);
+    //     return $this->db->affected_rows();
+    // }
 
     // public function get_by_id($tabel, $id_column)
     // {

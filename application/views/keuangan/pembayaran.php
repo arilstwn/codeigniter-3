@@ -103,6 +103,7 @@ body {
                         
                         
                             <center><thead>
+                             
                                 <tr>
                                     <th scope="col">No </th>
                                     <th scope="col">ID Siswa </th>
@@ -113,6 +114,7 @@ body {
                                 </tr>
                             </thead></center>
                             <tbody>
+                              
                                 <?php
                  $no= 0;foreach ($pembayaran as $row  ) :$no++                          
                     ?>
@@ -123,15 +125,16 @@ body {
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->total_pembayaran ?></td>
                                  </td>
                                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                 <a href="<?php echo base_url('admin/ubah_pembayaran/').$row->id?>" class="btn btn-primary">Ubah</a>
-                                 <button onclick="hapus(<?php echo $row->id ?>)" class="btn btn-warning">Hapus</button>
+                                 <a href="<?php echo base_url('keuangan/ubah_pembayaran/').$row->id?>" class="btn btn-warning">Update</a>
+                                 <button onclick="hapus(<?php echo $row->id ?>)" class="btn btn-danger">Delete</button>
+                                
          
                                   </td>
                               </tr><?php endforeach ?>
                            </table>
-                         <a href="<?php echo base_url('keuangan/tambah_pembayaran') ?>" class="btn btn-danger">Tambah</a>
-                                
-                    </div> <a href="<?php echo base_url('keuangan') ?>" class="btn btn-primary">Kembali</a>
+                      
+                           <a href="<?php echo base_url('keuangan/tambah_pembayaran') ?>" class="btn btn-primary">Tambah</a>    
+                    </div> 
                     
                     </form>
 
@@ -139,11 +142,11 @@ body {
 
                 </div>
             </div><
-<script>
+            <script>
    function hapus(id) {
       var yes = confirm ('yakin di hapus');
       if (yes == true) {
-         window.location.href = "<?php echo base_url('admin/hapus_pembayaran/')?>" + id;
+         window.location.href = "<?php echo base_url('keuangan/hapus_pembayaran/')?>" + id;
       }
    }
 </script>

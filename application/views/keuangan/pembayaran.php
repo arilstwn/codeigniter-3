@@ -10,7 +10,7 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <style>
 body {
-  background-image: url('https://w.wallha.com/ws/13/dAimUlRq.png');
+  background-image: url('https://assets.skor.id/crop/0x0:0x0/x/photo/2022/12/03/2899568271.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed; 
   background-size: 100% 100%;
@@ -94,9 +94,9 @@ body {
    
 
 <div class="row ">
-            <div class="col-12 card p-6">
+            <div class="col-12 card p-7">
                 <div class="card-body min-vh-200  align-items-center">
-                    <div class="card w-50 m-auto p-2">
+                    <div class="card w-50 m-auto p-1 ">
                         <table class="table  table-striped"> 
                             <center><h1><b>Daftar Pembayaran</b></h1></center>
                         <!-- <img src="https://o.remove.bg/downloads/08abdb44-01af-4324-a097-a546a0d0bffa/png-transparent-computer-icons-three-people-black-%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0-user-removebg-preview-removebg-preview.png" alt="" width="330" height="330"> -->
@@ -107,6 +107,7 @@ body {
                                 <tr>
                                     <th scope="col">No </th>
                                     <th scope="col">ID Siswa </th>
+                                    <th scope="col">Kelas </th>
                                     <th scope="col">Jenis Pembayaran </th>
                                     <th scope="col">Total Pembayaran </th>
                                     <th scope="col">Aksi</th>
@@ -121,16 +122,21 @@ body {
                                 <tr>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $no ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo tampil_full_siswa($row->id_siswa )?></td>
+                                    <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->id ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->jenis_pembayaran ?>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->total_pembayaran ?></td>
                                  </td>
                                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                  <a href="<?php echo base_url('keuangan/ubah_pembayaran/').$row->id?>" class="btn btn-warning">Update</a>
                                  <button onclick="hapus(<?php echo $row->id ?>)" class="btn btn-danger">Delete</button>
+                                 
+                                 <a href="<?php echo base_url('keuangan/export') ?>" class="bnt bnt-info">Export</a>
+
                                 
          
                                   </td>
-                              </tr><?php endforeach ?>
+                              </tr>
+                              <?php endforeach ?>
                            </table>
                       
                            <a href="<?php echo base_url('keuangan/tambah_pembayaran') ?>" class="btn btn-primary">Tambah</a>    

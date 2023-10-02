@@ -43,9 +43,9 @@
                <hr>
             </div>
             <div class="mb-3 col-6">
-                <label for="jenis_peambayaran" class="form-label"><b>Jenis Pembayaran</b></label>
+                <label for="jenis_pembayaran" class="form-label"><b>Jenis Pembayaran</b></label>
                 
-                <select name="jenis_peambayaran" class="form-select">
+                <select name="jenis_pembayaran" class="form-select">
                     <option selected>Pilih Jenis Pembayaran</option>
             
       
@@ -55,12 +55,24 @@
                 </select>
                 <hr>
             </div>
-            <center>
+           
             <div class="mb-3 col-6">
             <label for="total_pembayaran" class="form-label"><b>Total Pembayaran</b></label>
             <input type="text" class="form-control" id="total_pembayaran" placeholder="O shiharai sōgaku o nyūryoku shite kudasai" name="total_pembayaran">
              <hr>
-          </div></center>
+          </div>
+          <div class="mb-3 col-6">
+                <label for="id" class="form-label"><b>Kelas</b></label>
+                <select name="id_kelas" class="form-select">
+                    <option selected>Pilih Kelas</option>
+                    <?php foreach ($siswa as $row) : ?>
+                    <option value="<?php echo $row->id_kelas ?>">
+                        <?php echo $row->id_kelas ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
+               <hr>
+            </div>
 <button type="submit" class="btn btn-sm btn-primary">Tambah</button>             
         </form>
     </div>

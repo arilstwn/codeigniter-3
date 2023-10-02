@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <style>
-        body{
-          background-image: url('https://arifkeisuke.com/wp-content/uploads/2017/12/anime-anime-art-Shigatsu-wa-Kimi-no-Uso-arima-kousei-1894839.jpg');
+    <style>
+        body {
+          background-image: url('https://img.lovepik.com/background/20211022/medium/lovepik-purple-gradient-geometric-background-image_401945293.jpg');
           background-repeat: no-repeat;
           background-attachment: fixed; 
           background-size: 100% 100%;
         }
        </style>
         <style>
-        div{
-          background-image: url('https://i.ytimg.com/vi/CmRyGcR8fc4/maxresdefault.jpg');
+        
+        div {
+          background-image: url('https://img.freepik.com/vector-gratis/lineas-violeta-fondo-abstracto-semitono_23-2148582763.jpg');
           background-repeat: no-repeat;
           background-attachment: fixed; 
           background-size: 100% 100%;
@@ -58,12 +59,23 @@
                 </select>
                 <hr>
             </div>
-            <center>
             <div class="mb-3 col-6">
             <label for="total_pembayaran" class="form-label"><b>Total Pembayaran</b></label>
             <input type="text" class="form-control" id="total_pembayaran" placeholder="O shiharai sōgaku o nyūryoku shite kudasai" name="total_pembayaran">
              <hr>
-          </div></center>
+          </div>
+          <div class="mb-3 col-6">
+                <label for="kelas" class="form-label"><b>Kelas</b></label>
+                <select name="id_kelas" class="form-select">
+                    <option selected>Pilih Kelas</option>
+                    <?php foreach ($siswa as $row) : ?>
+                    <option value="<?php echo $row->id_kelas ?>">
+                        <?php echo $row->id_kelas ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
+               <hr>
+            </div>
           <div class="flex justify-content-between">
                     <div>
                         <a href="<?php echo base_url('keuangan/pembayaran'); ?>"

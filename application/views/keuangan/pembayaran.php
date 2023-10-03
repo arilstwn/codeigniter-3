@@ -10,7 +10,7 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <style>
 body {
-  background-image: url('https://assets.skor.id/crop/0x0:0x0/x/photo/2022/12/03/2899568271.jpg');
+  background-image: url('https://w.wallha.com/ws/13/dAimUlRq.png');
   background-repeat: no-repeat;
   background-attachment: fixed; 
   background-size: 100% 100%;
@@ -18,7 +18,7 @@ body {
 </style>
 </head>
 <body>
-<div class="flex md:order-2">
+<!-- <div class="flex md:order-2">
     <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
@@ -89,21 +89,32 @@ body {
 </aside>
       </div>
         </div>
-
+ -->
 
    
 
 <div class="row ">
             <div class="col-12 card p-7">
                 <div class="card-body min-vh-200  align-items-center">
-                    <div class="card w-50 m-auto p-1 ">
+                    <div class="card w-40 m-auto p-2">
                         <table class="table  table-striped"> 
                             <center><h1><b>Daftar Pembayaran</b></h1></center>
                         <!-- <img src="https://o.remove.bg/downloads/08abdb44-01af-4324-a097-a546a0d0bffa/png-transparent-computer-icons-three-people-black-%D0%BD%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0-user-removebg-preview-removebg-preview.png" alt="" width="330" height="330"> -->
                         
                         
                             <center><thead>
-                             
+                               <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                 <!-- Data Modal -->
+                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                 Modal
+                                 </button>
+                                <!-- Export -->
+                               <a href="<?php echo base_url('keuangan/export') ?>" class="btn btn-info">Export</a>
+                                <!-- Tambah -->
+                                <a href="<?php echo base_url('keuangan/tambah_pembayaran') ?>" class="btn btn-primary">Tambah</a> 
+
+
+
                                 <tr>
                                     <th scope="col">No </th>
                                     <th scope="col">ID Siswa </th>
@@ -130,22 +141,45 @@ body {
                                  <a href="<?php echo base_url('keuangan/ubah_pembayaran/').$row->id?>" class="btn btn-warning">Update</a>
                                  <button onclick="hapus(<?php echo $row->id ?>)" class="btn btn-danger">Delete</button>
                                  
-                                 <a href="<?php echo base_url('keuangan/export') ?>" class="bnt bnt-info">Export</a>
-
+                                 
+                                 
                                 
          
                                   </td>
                               </tr>
                               <?php endforeach ?>
                            </table>
-                      
-                           <a href="<?php echo base_url('keuangan/tambah_pembayaran') ?>" class="btn btn-primary">Tambah</a>    
-                    </div> 
-                    
-                    </form>
+                           <form class="mt-5" method="post" enctype="multipart/from-data"
+                            action="<?= base_url('keuangan/import') ?>">
+                           <input type="file" name="file" />
+                           <input type="submit" name="import"
+                           class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-r"
+                           value="import" />
+                        </form>
+                        <!-- Button trigger modal -->
 
-                   
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Lihat Data
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                           
                 </div>
             </div><
             <script>

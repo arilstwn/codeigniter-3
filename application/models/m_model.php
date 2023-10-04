@@ -16,7 +16,7 @@ class M_model extends CI_Model{
     }
   
      
-    public function get_by_id($tabel, $id_column)
+    public function get_by_id_siswa($tabel, $id_column)
     {
         $data=$this->db->where($id_column)->get($tabel);
         return $data;

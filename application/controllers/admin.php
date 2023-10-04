@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Admin extends CI_Controller {
 
 	function __construct(){
@@ -43,155 +45,203 @@ class Admin extends CI_Controller {
 		         $this->load->view('admin/siswa', $data);
 	}
 
-	        public function hapus_siswa($id)
-			{
-				$siswa = $this->m_model->get_by_id('siswa', 'id_siswa', $id)->row();
-				if ($siswa) {
-					if ($siswa->foto !== 'User.png') {
-						$file_path = './images/siswa/' . $siswa->foto;
-						 if (file_exists($file_path)){
-							if (unlink($file_path)){
-								$this->m_model->delete('siswa', 'id_siswa', $id);
-								redirect(base_url('admin/siswa'));
-							} else{
-								echo "Gagal menghapus file";
-							}
-						 } else {
-							echo "File tidak ditemukan";
-						 }
-					} else {
-						$this->m_model->delete('siswa', 'id_siswa', $id);
-						redirect(base_url('admin/siswa'));
-					}
-				} else {
-					echo "Siswa tidak ditemukan";
-				}
-			}
-	
-	   
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// Tambah Siswa
 	public function tambah_siswa()
-	{  
-		         $data['siswa'] = $this->m_model->get_data('siswa')->result();
-		         $this->load->view('admin/tambah_siswa');
+	{
+		$data['siswa']=$this->m_model->get_data('siswa')->result();
+		$data['kelas']=$this->m_model->get_data('kelas')->result();
+		$this->load->view('admin/tambah_siswa', $data);
 	}
 	
-	        public function aksi_tambah_siswa()
+	public function aksi_tambah_siswa()
 	{
-		        //  $foto = $this->upload_img('foto');
-		        //  if ($foto[0]== false) {
-
-			$data = [
-				// 'foto'         => 'User.png',
-				'nama_siswa'   => $this->input->post('nama_siswa'),
-				'nisn'         => $this->input->post('nisn'),
-				'gender'       => $this->input->post('gender'),
-				'id_kelas'     => $this->input->post('id_kelas'),
-				'nama_sekolah' => $this->input->post('nama_sekolah'),
+		$data = [
+			'nama_siswa' => $this->input->post('nama_siswa'),
+			'nisn' => $this->input->post('nisn'),
+			'gender' => $this->input->post('gender'),
+			'id_kelas' => $this->input->post('id_kelas'),
+			'nama_sekolah' => $this->input->post('nama_sekolah'),
 			];
-			$this->m_model->tambah_data('siswa', $data);
-			redirect(base_url('admin/siswa'));
-		} 
-	// 	else {
-	// 	    $data = [
-	// 		    'foto'         => $foto[1],
-	// 		    'nama_siswa'   => $this->input->post('nama_siswa'),
-	// 		    'nisn'         => $this->input->post('nisn'),
-	// 		    'gender'       => $this->input->post('gender'),
-	// 		    'id_kelas'     => $this->input->post('id_kelas'),
-	//             'nama_sekolah' => $this->input->post('nama_sekolah')
-	// 	];
-	// 	    $this->m_model->tambah_data('siswa', $data);
-	// 	    redirect(base_url('admin/siswa'));
-	// }
+		$this->m_model->tambah_data('siswa', $data);
+		redirect(base_url('admin/siswa'));
+	}
 
-		//     public function ubah_siswa()
-		//        {
-		// 	     $data['siswa']=$this->m_model->get_by_id('siswa', 'id_siswa')->result();
-		// 	     $data['kelas']=$this->m_model->get_data('kelas')->result();
-		// 	     $this->load->view('admin/siswa', $data);
-		// };
 
-	//         public function akun()
-	// {
-	// 	         $data['user']=$this->m_model->get_by_id('admin', 'id', $this->session->userdata('id'))->result();
-	// 	         $this->load->view('admin/akun', $data);
-	// }
-	//         public function aksi_ubah_akun()
-	// {
-	// 	         $password_baru = $this->input->post('password_baru');
-	// 	         $konfirmasi_password= $this->input->post('konfirmasi_password');
-	// 	         $email = $this->input->post('email');
-	// 	         $username = $this->input->post('username');
-	// }
-    //    // baut data yang akan diubah
-	//              $data = array(
-	// 	         'email' => $email,
-	// 	         'username' => $username
-	// );	
 	
-	// //  //jika ada password baru
-	//              if (!empty($passwor_baru)){
-	// 	// pastikan password baru dan konfirmasi password sama
-	// 	         if ($password_baru === $konfirmasi_password) {
-	// 		//hash password baru
-	// 		     $data['password'] = md5($password_baru);
-	// 	} else {
-	// 		     $this->session->set_flashdata('massage', 'password baru dan konfirmasi password harus sama');
-	// 		     redirect(base_url('admin/akun'));
-	// 	}
-	// }
-	 
-	//  // lakukan pembaruan data
-	//              $this->session->set_userdata($data);
-	//              $update_result = $this->m-model->ubah_data('admin', $data, array('id' => $this->session->userdata('id')));
+	public function ubah_siswa($id)
+	{
+		$data['siswa']=$this->m_model->get_data('siswa')->result();
+		$this->load->view('admin/ubah_siswa', $data);
+	}
+
 	
-	//              if ($update_result) {
-	// 	         redirect(base_url('admin/akun'));
-	// } else {
-	// 	         redirect(base_url('admin/akun'));
-	// }
 
 
-       public function keuangan()
-	   {
-		$data['keuangan'] = $this->m_model->get_data('keuangan')->result();
-		$this->load->view('admin/keuangan', $data);
-	   }
-	   public function tambah_keuangan()
-	   {  
-					$data['keuangan'] = $this->m_model->get_data('keuangan')->result();
-					$this->load->view('admin/tambah_keuangan');
-	   }
+	public function aksi_ubah_siswa()
+  {
+    $data = array (
+      'nama_siswa' => $this->input->post('nama'),
+      'nisn' => $this->input->post('nisn'),
+      'gender' => $this->input->post('gender'),
+      'id_kelas' =>$this->input->post('id_kelas'),
+	  'nama_sekolah' =>$this->input->post('nama_sekolah'),
+    );
+    $eksekusi=$this->m_model->ubah_data
+    ('siswa', $data, array('id_siswa'=>$this->input->post('id_siswa')));
+    if($eksekusi)
+    {
+      $this->session->set_flashdata('sukses', 'berhasil');
+      redirect(base_url('admin/siswa'));
+    } 
+    else
+    {
+      $this->session->set_flashdata('error', 'gagal..');
+      redirect(base_url('admin/siswa/'.$this->input->post('id_siswa')));
+    }
+  }
+
+  public function hapus_siswa($id)
+	{
+		$this->m_model->delete('siswa', 'id_siswa', $id);
+		redirect(base_url('admin/siswa'));
+	}
+
+
+		    // export
+		 public function export ()
+		 {
+		   $spreadsheet = new Spreadsheet();
+		   $sheet = $spreadsheet->getActiveSheet();
 	   
-			   public function aksi_tambah_keuangan()
-	   {
-   
-			   $data = [
-				 
-				   'pemasukan'   => $this->input->post('pemasukan'),
-				   'pengeluaran' => $this->input->post('pengeluaran'),
-				   'tanggal'     => $this->input->post('tanggal'),
-			   ];
-			   $this->m_model->tambah_data('keuangan', $data);
-			   redirect(base_url('admin/keuangan'));
-		   } 
+		   $style_col = [
+			 'font' => ['bold' => true],
+			 'alignment' => [
+			   'horizontal' =>\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+			   'vertical' =>\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+			 ],
+			 'borders' => [
+			   'top' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+			   'right' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+			   'bottom' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+			   'left' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN]
+			 ]
+			 ];
+	   
+			 $style_row = [
+			   'alignment' => [
+				 'vertical' =>\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+			   ],
+			   'borders' => [
+				 'top' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+				 'right' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+				 'bottom' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],
+				 'left' =>['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN]
+			   ]
+			 ];
+	   
+			 $sheet->setCellValue('A1', "DATA SISWA");
+			 $sheet->mergeCells('A1:E1');
+			 $sheet->getStyle('A1')->getFont()->setBold(true);
+	   
+			 // Head
+			 $sheet->setCellValue('A3', "ID	SISWA");
+			 $sheet->setCellValue('B3', "NAMA SISWA");
+			 $sheet->setCellValue('C3', "NISN");
+			 $sheet->setCellValue('D3', "GENDER");
+			 $sheet->setCellValue('E3', "ID	KELAS");
+			 $sheet->setCellValue('F3', "NAMA SEKOLAH");
+	   
+			 $sheet->getStyle('A3')->applyFromArray($style_col);
+			 $sheet->getStyle('B3')->applyFromArray($style_col);
+			 $sheet->getStyle('C3')->applyFromArray($style_col);
+			 $sheet->getStyle('D3')->applyFromArray($style_col);
+			 $sheet->getStyle('E3')->applyFromArray($style_col);
+			 $sheet->getStyle('F3')->applyFromArray($style_col);
+	   
+			 // Get data from databse
+			 $data_pembayaran = $this->m_model->get_data('siswa')->result();
+	   
+			 $no = 1;
+			 $numrow = 4;
+			 foreach ($data_pembayaran as $data) {
+			   $sheet->setCellValue('A'.$numrow, $data->id_siswa);
+			   $sheet->setCellValue('B'.$numrow, $data->nama_siswa);
+			   $sheet->setCellValue('C'.$numrow, $data->nisn);
+			   $sheet->setCellValue('D'.$numrow, $data->gender);
+			   $sheet->setCellValue('E'.$numrow, $data->id_kelas);
+			   $sheet->setCellValue('F'.$numrow, $data->nama_sekolah);
+	   
+			   $sheet->getStyle('A'.$numrow)->applyFromArray($style_row);
+			   $sheet->getStyle('B'.$numrow)->applyFromArray($style_row);
+			   $sheet->getStyle('C'.$numrow)->applyFromArray($style_row);
+			   $sheet->getStyle('D'.$numrow)->applyFromArray($style_row);
+			   $sheet->getStyle('E'.$numrow)->applyFromArray($style_row);
+			   $sheet->getStyle('F'.$numrow)->applyFromArray($style_row);
+	   
+			   $no++;
+			   $numrow++;
+			 }
+	   
+			 $sheet->getColumnDimension('A')->setWidth(5);
+			 $sheet->getColumnDimension('B')->setWidth(25);
+			 $sheet->getColumnDimension('C')->setWidth(25);
+			 $sheet->getColumnDimension('D')->setWidth(20);
+			 $sheet->getColumnDimension('E')->setWidth(30);
+			 $sheet->getColumnDimension('F')->setWidth(30);
+	   
+			 $sheet->getDefaultRowDimension()->setRowHeight(-1);
+	   
+			 $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+	   
+			 $sheet->setTitle("LAPORAN DATA SISWA");
+	   
+			 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			 header('Content-Disposition: attachment; filename="SISWA.xlsx"');
+			 header('Cache-Control: max-age=');
+	   
+			 $writer = new Xlsx($spreadsheet);
+			 $writer->save('php://output');
+		 }
+	   
+		 // import.
+		 public function import(){
+	   
+		   if (isset($_FILES["file"]["name"])) {
+			 $path = $_FILES["file"]["tmp_name"];
+			 $object = PhpOffice\PhpSpreadsheet\IOFACTORY::load($path);
+			 foreach ($object->getWorksheetIterator() as $worksheet) {
+		 $highestrow = $worksheet->getHighestRow();
+		 $highestColumn= $worksheet->getHighestColumn();
+		 for ($row=2; $row <= $highestrow ; $row++) { 
+		   $id_siswa= $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+		   $nama_siswa= $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+		   $nisn= $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+		   $gender= $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+		   $id_kelas= $worksheet->getCellByColumnAndRow(12, $row)->getValue();
+		   $nama_sekolah= $worksheet->getCellByColumnAndRow(13, $row)->getValue();
+		 
+		 $get_id_by_nisn= $this->m_model->get_by_nisn($nisn);
+		 $data =array(
+		   'nama_sekolah'=> $nama_sekolah,
+		   'gender'=> $gender,
+		   'id_siswa'=> $get_id_by_nisn
+		 );
+		 
+		 $this->m_model->tambah_data('siswa',$data);
+		 }
+		 }
+		 redirect(base_url('admin/siswa'));
+		 }else {
+		   echo "Invalid errror";
+		 }
 
 		 
 		}
 
+}	
+		 
+		 
 
 
-?>
+

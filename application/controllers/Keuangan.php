@@ -39,7 +39,7 @@ class Keuangan extends CI_Controller {
 	{
 		$data = [
 			'id_siswa'         => $this->input->post('id_siswa'),
-            'id'         => $this->input->post('id'),
+      'id'               => $this->input->post('id'),
 			'jenis_pembayaran' => $this->input->post('jenis_pembayaran'),
 			'total_pembayaran' => $this->input->post('total_pembayaran'),
 			];
@@ -60,7 +60,7 @@ class Keuangan extends CI_Controller {
   {
     $data = array (
       'id_siswa'         => $this->input->post('id_siswa'),
-      'id'         => $this->input->post('id'),
+      'id'               => $this->input->post('id'),
       'jenis_pembayaran' => $this->input->post('jenis_pembayaran'),
       'total_pembayaran' => $this->input->post('total_pembayaran'),
     );

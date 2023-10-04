@@ -73,6 +73,12 @@
                 </select>
                <hr>
             </div>
+            <input type="file" name="foto" />
+                <div class="d-grid gap-2 d-md-block">
+                    <hr>
+                    <br>
+                   
+                </div>
 <button type="submit" class="btn btn-sm btn-primary">Tambah</button>             
         </form>
     </div>

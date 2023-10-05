@@ -33,7 +33,7 @@
             <div class="mb-3 col-6">
                 <label for="nama" class="form-label"><b>Nama Siswa</b></label>
                 
-                <input type="text" class="form-control" id="nama_siswa" name="nama_siswa">
+                <input type="text" class="form-control" id="nama" name="nama">
                 <hr>
             </div>
             <div class="mb-3 col-6">
@@ -67,12 +67,7 @@
                 </select>
                <hr>
             </div>
-            <input type="file" name="foto" />
-                <div class="d-grid gap-2 d-md-block">
-                    <hr>
-                    <br>
-                   
-                </div>
+           
           <center>
             <div class="mb-3 col-6">
             <label for="nama_sekolah" class="form-label"><b>Sekolah</b></label>

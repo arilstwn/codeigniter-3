@@ -217,34 +217,33 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-    function hapus(id) {
-        Swal.fire({
-            title: 'Yakin DI Hapus?',
-            icon: 'Tidak Jadi',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "<?php echo base_url('keuangan/hapus_pembayaran/') ?>" + id;
-            }
-        });
-    }
-    </script>
+<script>
+        function hapus(id) {
+            swal.fire({
+                title: 'Yakin untuk menghapus data ini?',
+                text: "Data ini akan terhapus permanen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Dihapus',
+                        showConfirmButton: false,
+                        timer: 1500,
 
-    <?php if ($this->session->flashdata('success')): ?>
-    <script>
-    Swal.fire({
-        icon: 'success',
-        title: '<?= $this->session->flashdata('success') ?>',
-        showConfirmButton: false,
-        timer: 1500
-    });
-    </script>
-    <?php endif; ?>
+                    }).then(function() {
+                        window.location.href = "<?php echo base_url('admin/hapus_siswa/')?>" + id;
+                    });
+                }
+            });
+        }
+        </script>
+
 
    
    

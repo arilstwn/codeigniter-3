@@ -206,7 +206,7 @@
             </div><
 
 
-                      <!-- Button trigger modal -->
+                  <!-- Button trigger modal -->
 
 
 <!-- Modal -->
@@ -228,7 +228,7 @@
   </div>
 </div>
 
-</div>
+
 <script>
    function hapus(id) {
       var yes = confirm ('yakin di hapus');
@@ -237,8 +237,6 @@
       }
    }
 </script>
-
- 
 
    
    

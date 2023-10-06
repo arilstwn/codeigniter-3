@@ -173,7 +173,9 @@
                                    <tr>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo$no ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->nama_siswa ?></td>
-                                    <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->foto ?></td>
+                                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                        <img src="<?php echo base_url('images/siswa/'.$row->foto) ?>" width="50">
+                                    </td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->nisn ?></td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->gender ?>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700"><?php echo $row->id_kelas ?>
